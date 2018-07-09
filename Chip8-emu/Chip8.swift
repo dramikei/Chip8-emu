@@ -52,5 +52,6 @@ class Chip8 {
         }
     }
     
+    func getDisplay() -> [Byte] { return display }
     
 }
