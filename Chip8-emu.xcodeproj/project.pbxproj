@@ -60,15 +60,14 @@
 		686187D820F34CDD002E4541 /* Chip8-emu */ = {
 			isa = PBXGroup;
 			children = (
+				686187F320F3FB26002E4541 /* Delegate */,
 				686187EF20F3E207002E4541 /* Roms */,
-				686187D920F34CDD002E4541 /* AppDelegate.swift */,
-				686187DB20F34CDD002E4541 /* ChipVC.swift */,
+				686187F220F3FB03002E4541 /* Controllers */,
+				686187EB20F34CFD002E4541 /* Chip8.swift */,
 				686187DD20F34CDE002E4541 /* Main.storyboard */,
 				686187E020F34CE2002E4541 /* Assets.xcassets */,
 				686187E220F34CE2002E4541 /* LaunchScreen.storyboard */,
 				686187E520F34CE2002E4541 /* Info.plist */,
-				686187EB20F34CFD002E4541 /* Chip8.swift */,
-				686187ED20F3DD5F002E4541 /* MainVC.swift */,
 			);
 			path = "Chip8-emu";
 			sourceTree = "<group>";
@@ -79,6 +78,23 @@
 				686187F020F3E215002E4541 /* pong.rom */,
 			);
 			path = Roms;
+			sourceTree = "<group>";
+		};
+		686187F220F3FB03002E4541 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				686187ED20F3DD5F002E4541 /* MainVC.swift */,
+				686187DB20F34CDD002E4541 /* ChipVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		686187F320F3FB26002E4541 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				686187D920F34CDD002E4541 /* AppDelegate.swift */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
