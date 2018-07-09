@@ -44,5 +44,13 @@ class Chip8 {
         //loadFontset()
     }
     
+    func loadGame(rom: Array<Byte>) {
+        var i = 0
+        while i < rom.count {
+            memory[0x200 + i] = rom[i]
+            i += 1
+        }
+    }
+    
     
 }

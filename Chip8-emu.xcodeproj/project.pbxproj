@@ -14,6 +14,7 @@
 		686187E420F34CE2002E4541 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 686187E220F34CE2002E4541 /* LaunchScreen.storyboard */; };
 		686187EC20F34CFD002E4541 /* Chip8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686187EB20F34CFD002E4541 /* Chip8.swift */; };
 		686187EE20F3DD5F002E4541 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686187ED20F3DD5F002E4541 /* MainVC.swift */; };
+		686187F120F3E215002E4541 /* pong.rom in Resources */ = {isa = PBXBuildFile; fileRef = 686187F020F3E215002E4541 /* pong.rom */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		686187E520F34CE2002E4541 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		686187EB20F34CFD002E4541 /* Chip8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip8.swift; sourceTree = "<group>"; };
 		686187ED20F3DD5F002E4541 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		686187F020F3E215002E4541 /* pong.rom */ = {isa = PBXFileReference; lastKnownFileType = file; path = pong.rom; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		686187D820F34CDD002E4541 /* Chip8-emu */ = {
 			isa = PBXGroup;
 			children = (
+				686187EF20F3E207002E4541 /* Roms */,
 				686187D920F34CDD002E4541 /* AppDelegate.swift */,
 				686187DB20F34CDD002E4541 /* ChipVC.swift */,
 				686187DD20F34CDE002E4541 /* Main.storyboard */,
@@ -68,6 +71,14 @@
 				686187ED20F3DD5F002E4541 /* MainVC.swift */,
 			);
 			path = "Chip8-emu";
+			sourceTree = "<group>";
+		};
+		686187EF20F3E207002E4541 /* Roms */ = {
+			isa = PBXGroup;
+			children = (
+				686187F020F3E215002E4541 /* pong.rom */,
+			);
+			path = Roms;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +139,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				686187F120F3E215002E4541 /* pong.rom in Resources */,
 				686187E420F34CE2002E4541 /* LaunchScreen.storyboard in Resources */,
 				686187E120F34CE2002E4541 /* Assets.xcassets in Resources */,
 				686187DF20F34CDE002E4541 /* Main.storyboard in Resources */,
