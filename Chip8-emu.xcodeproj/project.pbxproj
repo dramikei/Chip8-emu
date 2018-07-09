@@ -12,6 +12,7 @@
 		686187DF20F34CDE002E4541 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 686187DD20F34CDE002E4541 /* Main.storyboard */; };
 		686187E120F34CE2002E4541 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 686187E020F34CE2002E4541 /* Assets.xcassets */; };
 		686187E420F34CE2002E4541 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 686187E220F34CE2002E4541 /* LaunchScreen.storyboard */; };
+		686187EC20F34CFD002E4541 /* Chip8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686187EB20F34CFD002E4541 /* Chip8.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		686187E020F34CE2002E4541 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		686187E320F34CE2002E4541 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		686187E520F34CE2002E4541 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		686187EB20F34CFD002E4541 /* Chip8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip8.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				686187E020F34CE2002E4541 /* Assets.xcassets */,
 				686187E220F34CE2002E4541 /* LaunchScreen.storyboard */,
 				686187E520F34CE2002E4541 /* Info.plist */,
+				686187EB20F34CFD002E4541 /* Chip8.swift */,
 			);
 			path = "Chip8-emu";
 			sourceTree = "<group>";
@@ -135,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				686187EC20F34CFD002E4541 /* Chip8.swift in Sources */,
 				686187DC20F34CDD002E4541 /* ViewController.swift in Sources */,
 				686187DA20F34CDD002E4541 /* AppDelegate.swift in Sources */,
 			);
