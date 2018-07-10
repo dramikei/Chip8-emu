@@ -13,7 +13,7 @@ class ChipVC: UIViewController {
     
     @IBOutlet weak var skView: SKView!
     var scene: SKScene!
-    
+    var emuTimer: Timer!
     
     
     var chip8: Chip8!
@@ -22,11 +22,15 @@ class ChipVC: UIViewController {
         super.viewDidLoad()
         scene = SKScene()
         chip8 = Chip8()
+        getGame()
         createSceneContent()
         presentDisplay()
         skView.presentScene(scene)
-        getGame()
-        
+        self.emuTimer = Timer.scheduledTimer(timeInterval: 1/500.0, target: self, selector: #selector(self.timerFired), userInfo: nil, repeats: true)
+    }
+    
+    @objc func timerFired() {
+        chip8.run()
     }
     
     func createSceneContent() {

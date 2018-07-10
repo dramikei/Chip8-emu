@@ -44,6 +44,35 @@ class Chip8 {
         //loadFontset()
     }
     
+    func run() {
+        var opcode: Word = Word(Int(memory[Int(pc)]) << 8 | Int(memory[Int(pc) + 1]))
+        print("opcode: " + printHex(Int(opcode)))
+        
+        switch(opcode & 0xF000) {
+            
+        case 0x8000:
+            
+            
+            switch(opcode & 0x000F) {
+            case 0x000:
+                //8XY0: Sets VX to the value of VY.
+                break
+            default:
+                print("Unsupported opcode! in case 8000")
+                break
+            }
+            
+            
+            break
+            
+            
+        default:
+            print("Unsupported opcode!")
+            break
+        }
+        
+    }
+    
     func loadGame(rom: Array<Byte>) {
         var i = 0
         while i < rom.count {
@@ -54,4 +83,13 @@ class Chip8 {
     
     func getDisplay() -> [Byte] { return display }
     
+    func needsRedraw() -> Bool { return needRedraw }
+    
+    func removeDrawFlag() { needRedraw = false }
+    
+    
+    func printHex(_ x: Int) -> String {
+        let y = String(x, radix: 16, uppercase: true)
+        return "0x\(y)"
+    }
 }
