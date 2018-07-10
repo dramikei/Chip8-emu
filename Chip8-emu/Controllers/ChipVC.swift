@@ -31,6 +31,10 @@ class ChipVC: UIViewController {
     
     @objc func timerFired() {
         chip8.run()
+        if chip8.needsRedraw() {
+            presentDisplay()
+            chip8.removeDrawFlag()
+        }
     }
     
     func createSceneContent() {
@@ -41,20 +45,19 @@ class ChipVC: UIViewController {
     }
     
     func presentDisplay() {
+        scene.removeAllChildren()
         let display = chip8.getDisplay()
         var i = 0
         while i < display.count {
             let point: SKSpriteNode!
-            if display[i] == 0 {
-                point = SKSpriteNode(color: .black, size: CGSize(width: 1, height: 1))
-            } else {
+            if display[i] == 1 {
                 point = SKSpriteNode(color: .white, size: CGSize(width: 1, height: 1))
+                let x = i % 64
+                let y = -(Int(floor(Double(i / 64))))
+                point.position = CGPoint(x: x, y: y)
+                point.anchorPoint = CGPoint(x: 0, y: 1)
+                scene.addChild(point)
             }
-            let x = i % 64
-            let y = -(Int(floor(Double(i / 64))))
-            point.position = CGPoint(x: x, y: y)
-            point.anchorPoint = CGPoint(x: 0, y: 1)
-            scene.addChild(point)
             i += 1
         }
     }

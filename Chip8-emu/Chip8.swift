@@ -51,8 +51,6 @@ class Chip8 {
         switch(opcode & 0xF000) {
             
         case 0x8000:
-            
-            
             switch(opcode & 0x000F) {
             case 0x000:
                 //8XY0: Sets VX to the value of VY.
@@ -61,8 +59,6 @@ class Chip8 {
                 print("Unsupported opcode! in case 8000")
                 break
             }
-            
-            
             break
             
             
