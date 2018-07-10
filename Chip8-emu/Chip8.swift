@@ -45,11 +45,37 @@ class Chip8 {
     }
     
     func run() {
-        var opcode: Word = Word(Int(memory[Int(pc)]) << 8 | Int(memory[Int(pc) + 1]))
+        let opcode: Word = Word(Int(memory[Int(pc)]) << 8 | Int(memory[Int(pc) + 1]))
         print("opcode: " + printHex(Int(opcode)))
         
         switch(opcode & 0xF000) {
             
+        case 0x1000:
+            break
+            
+        case 0x2000:
+            stack[Int(stackPointer)] = pc
+            stackPointer += 1
+            pc = Word(opcode & 0x0FFF)
+            break
+            
+        case 0x3000:
+            break
+            
+        case 0x6000:
+            let x: Int = Int(opcode & 0x0F00) >> 8
+            V[x] = Byte(opcode & 0x00FF)
+            pc += 2
+            break
+            
+        case 0x7000:
+            let x: Int = Int(opcode & 0x0F00) >> 8
+            let nn: Byte = Byte(opcode & 0x00FF)
+            V[x] = (V[x] + nn) & 0xFF
+            pc += 2
+            break
+            
+        /////////////
         case 0x8000:
             switch(opcode & 0x000F) {
             case 0x000:
@@ -60,7 +86,47 @@ class Chip8 {
                 break
             }
             break
+        /////////////
             
+        case 0xA000:
+            I = opcode & 0x0FFF
+            pc += 2
+            break
+            
+        case 0xD000: //TODO
+            let x = V[Int((opcode & 0x0F00) >> 8)]
+            let y = V[Int((opcode & 0x00F0) >> 4)]
+            let height = opcode & 0x000F
+            print("x: \(printHex(Int(x))) + y: \(printHex(Int(y))) + height: \(printHex(Int(height)))")
+            
+            var _x = 0
+            var _y = 0
+            
+            V[0xF] = 0
+            
+            while _y < height {
+                let line = memory[Int(I) + _y]
+                while _x < 8 {
+                    let pixel = line & (0x80 >> _x)
+                    if pixel != 0 {
+                        let totalX = Int(x) + _x
+                        let totalY = Int(y) + _y
+                        let index = totalY * 64 + totalX
+                        
+                        if display[Int(index)] == 1 {
+                            V[0xF] = 1
+                        }
+                        
+                        display[Int(index)] ^= 1
+                    }
+                    _x += 1
+                }
+                _y += 1
+            }
+            
+            pc += 2
+            needRedraw = true
+            break
             
         default:
             print("Unsupported opcode!")

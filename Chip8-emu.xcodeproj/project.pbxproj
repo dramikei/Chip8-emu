@@ -14,7 +14,7 @@
 		686187E420F34CE2002E4541 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 686187E220F34CE2002E4541 /* LaunchScreen.storyboard */; };
 		686187EC20F34CFD002E4541 /* Chip8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686187EB20F34CFD002E4541 /* Chip8.swift */; };
 		686187EE20F3DD5F002E4541 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686187ED20F3DD5F002E4541 /* MainVC.swift */; };
-		686187F120F3E215002E4541 /* pong.rom in Resources */ = {isa = PBXBuildFile; fileRef = 686187F020F3E215002E4541 /* pong.rom */; };
+		686187F720F54CAB002E4541 /* pong2.c8 in Resources */ = {isa = PBXBuildFile; fileRef = 686187F620F54CAB002E4541 /* pong2.c8 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		686187E520F34CE2002E4541 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		686187EB20F34CFD002E4541 /* Chip8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip8.swift; sourceTree = "<group>"; };
 		686187ED20F3DD5F002E4541 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
-		686187F020F3E215002E4541 /* pong.rom */ = {isa = PBXFileReference; lastKnownFileType = file; path = pong.rom; sourceTree = "<group>"; };
+		686187F620F54CAB002E4541 /* pong2.c8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pong2.c8; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,7 @@
 		686187EF20F3E207002E4541 /* Roms */ = {
 			isa = PBXGroup;
 			children = (
-				686187F020F3E215002E4541 /* pong.rom */,
+				686187F620F54CAB002E4541 /* pong2.c8 */,
 			);
 			path = Roms;
 			sourceTree = "<group>";
@@ -155,10 +155,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				686187F120F3E215002E4541 /* pong.rom in Resources */,
 				686187E420F34CE2002E4541 /* LaunchScreen.storyboard in Resources */,
 				686187E120F34CE2002E4541 /* Assets.xcassets in Resources */,
 				686187DF20F34CDE002E4541 /* Main.storyboard in Resources */,
+				686187F720F54CAB002E4541 /* pong2.c8 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

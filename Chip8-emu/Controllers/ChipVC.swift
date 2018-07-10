@@ -64,7 +64,7 @@ class ChipVC: UIViewController {
     
     func getGame() {
         do {
-            let data = try Data(contentsOf: Bundle.main.url(forResource: "pong", withExtension: "rom")!)
+            let data = try Data(contentsOf: Bundle.main.url(forResource: "pong2", withExtension: "c8")!)
             data.withUnsafeBytes({ (pointer: UnsafePointer<Byte>) in
                 let buffer = UnsafeBufferPointer(start: pointer, count: data.count)
                 let array = Array<Byte>(buffer)
