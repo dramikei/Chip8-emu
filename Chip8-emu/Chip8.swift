@@ -50,7 +50,27 @@ class Chip8 {
         
         switch(opcode & 0xF000) {
             
+        ///////////
+        case 0x000:
+            switch (opcode & 0x00FF) {
+            case 0x00E0:
+                print("Unsupported opcode!")
+                break
+            case 0x00EE:
+                stackPointer = stackPointer - 1
+                pc = stack[Int(stackPointer)] + 2
+                print("Returning to \(printHex(Int(pc)))")
+                break
+            default:
+                print("Unsupported opcode!")
+                break
+            }
+            break
+        ///////////
+            
         case 0x1000:
+            let nnn: Int = Int(opcode & 0x0FFF)
+            pc = Word(nnn)
             break
             
         case 0x2000:
@@ -60,6 +80,15 @@ class Chip8 {
             break
             
         case 0x3000:
+            let x: Int = (Int(opcode & 0x0F00) >> 8)
+            let nn: Int = Int(opcode & 0x00FF)
+            if V[x] == nn {
+                pc += 4
+                print("Skipping next instruction V[\(Int(x))] == \(nn)")
+            } else {
+                pc += 2
+                print("Not skipping next instruction V[\(Int(x))] != \(nn)")
+            }
             break
             
         case 0x6000:
@@ -93,11 +122,10 @@ class Chip8 {
             pc += 2
             break
             
-        case 0xD000: //TODO
+        case 0xD000:
             let x = V[Int((opcode & 0x0F00) >> 8)]
             let y = V[Int((opcode & 0x00F0) >> 4)]
             let height = opcode & 0x000F
-            print("x: \(printHex(Int(x))) + y: \(printHex(Int(y))) + height: \(printHex(Int(height)))")
             
             var _x = 0
             var _y = 0
@@ -111,7 +139,7 @@ class Chip8 {
                     if pixel != 0 {
                         let totalX = Int(x) + _x
                         let totalY = Int(y) + _y
-                        let index = totalY * 64 + totalX
+                        let index = (totalY * 64) + totalX
                         
                         if display[Int(index)] == 1 {
                             V[0xF] = 1
