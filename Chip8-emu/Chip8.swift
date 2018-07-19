@@ -123,38 +123,70 @@ class Chip8 {
             break
             
         case 0xD000:
-            let x = V[Int((opcode & 0x0F00) >> 8)]
-            let y = V[Int((opcode & 0x00F0) >> 4)]
+            
+            let x = V[Int(opcode & 0x0F00) >> 8]
+            let y = V[Int(opcode & 0x00F0) >> 4]
             let height = opcode & 0x000F
+            var pixel: Word
             
-            var _x = 0
-            var _y = 0
-            
-            V[0xF] = 0
-            
-            while _y < height {
-                let line = memory[Int(I) + _y]
-                while _x < 8 {
-                    let pixel = line & (0x80 >> _x)
-                    if pixel != 0 {
-                        let totalX = Int(x) + _x
-                        let totalY = Int(y) + _y
-                        let index = (totalY * 64) + totalX
-                        
-                        if display[Int(index)] == 1 {
-                            V[0xF] = 1
+            V[0xF] = 0;
+            for yline in 0...(height - 1) {
+                pixel = Word(memory[Int(I + yline)])
+                for xline in 0...7 {
+                    if((pixel & (0x80 >> xline)) != 0) {
+                        if(display[Int(x) + Int(xline) + ((Int(y) + Int(yline)) * 64)] == 1){
+                            V[Int(0xF)] = 1
                         }
-                        
-                        display[Int(index)] ^= 1
+                        display[Int(x) + Int(xline) + ((Int(y) + Int(yline)) * 64)] ^= 1
                     }
-                    _x += 1
                 }
-                _y += 1
             }
-            
-            pc += 2
             needRedraw = true
+            pc += 2
             break
+            
+        /////////////
+        case 0xF000:
+            switch(opcode & 0x00FF) {
+                
+            case 0x0029:
+                let x = Int((opcode & 0x0F00)) >> 8
+                let character: Byte = V[x]
+                I = Word(character * 5)
+                print("Setting I to character V[\(x)] = \(V[x]) offset to \(printHex(Int(I)))")
+                pc += 2
+                break
+                
+            case 0x0033:
+                let x = Int(opcode & 0x0F00) >> 8
+                var value = V[x]
+                let hundreds = (value - (value % 100)) / 100
+                value = value - (hundreds * 100)
+                let tens = (value - (value % 10)) / 10
+                value = value - (tens * 10)
+                let ones = value
+                memory[Int(I)] = Byte(hundreds)
+                memory[Int(I + 1)] = Byte(tens)
+                memory[Int(I + 2)] = Byte(ones)
+                print("Storing binary coded decimal V[\(x)] = \(V[x]) as {\(hundreds), \(tens), \(ones)}")
+                pc += 2
+                break
+                
+            case 0x0065:
+                let x = Int(opcode & 0xF00) >> 8
+                for i in 0...(x - 1) {
+                    V[i] = memory[Int(I) + i]
+                    print(i)
+                }
+                print("Setting V[0] to V[\(x)] to the values of memory[\(printHex(Int(I & 0xFFFF)))]")
+                pc += 2
+                break
+            default:
+                print("Unsupported opcode!")
+                break
+            }
+            break
+        /////////////
             
         default:
             print("Unsupported opcode!")
