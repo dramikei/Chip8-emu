@@ -223,6 +223,13 @@ class Chip8 {
             print("Unsupported opcode!")
             break
         }
+        if sound_timer > 0 {
+            sound_timer -= 1
+            //playSound()
+        }
+        if delay_timer > 0 {
+            delay_timer -= 1
+        }
         
     }
     
