@@ -69,8 +69,9 @@ class Chip8 {
         ///////////
             
         case 0x1000:
-            let nnn: Int = Int(opcode & 0x0FFF)
+            let nnn: Word = Word(opcode & 0x0FFF)
             pc = Word(nnn)
+            print("Jumping to \(printHex(Int(pc)))")
             break
             
         case 0x2000:
@@ -95,6 +96,7 @@ class Chip8 {
             let x: Int = Int(opcode & 0x0F00) >> 8
             V[x] = Byte(opcode & 0x00FF)
             pc += 2
+            print("Setting V[\(x)] to \(V[x])")
             break
             
         case 0x7000:
@@ -102,13 +104,19 @@ class Chip8 {
             let nn: Byte = Byte(opcode & 0x00FF)
             V[x] = (V[x] + nn) & 0xFF
             pc += 2
+            print("Adding \(nn) to V[\(x)] = \(V[x])")
             break
             
         /////////////
         case 0x8000:
             switch(opcode & 0x000F) {
-            case 0x000:
+            case 0x0000:
                 //8XY0: Sets VX to the value of VY.
+                let x = Int(opcode & 0x0F00) >> 8
+                let y = Int(opcode & 0x00F0) >> 4
+                print("Setting V[\(x)] to \(V[y])")
+                V[x] = V[y]
+                pc += 2
                 break
             default:
                 print("Unsupported opcode! in case 8000")
@@ -119,6 +127,15 @@ class Chip8 {
             
         case 0xA000:
             I = opcode & 0x0FFF
+            pc += 2
+            break
+            
+        case 0xC000:
+            let x = Int(opcode & 0x0F00) >> 8
+            let nn = (opcode & 0x00FF)
+            let randomNumber = Int.random(in: 0 ..< 256) & Int(nn)
+            V[x] = Byte(randomNumber)
+            print("Setting V[\(x)] to a random number: \(randomNumber)")
             pc += 2
             break
             
@@ -148,6 +165,20 @@ class Chip8 {
         /////////////
         case 0xF000:
             switch(opcode & 0x00FF) {
+                
+            case 0x0007:
+                let x = Int(opcode & 0x0F00) >> 8
+                V[x] = delay_timer
+                pc += 2
+                print("Setting V[\(x)] to delayTimer = \(delay_timer)")
+                break
+                
+            case 0x0015:
+                let x = Int(opcode & 0x0F00) >> 8
+                delay_timer = V[x]
+                pc += 2
+                print("Setting delayTimer to V[\(x)] = \(V[x])")
+                break
                 
             case 0x0029:
                 let x = Int((opcode & 0x0F00)) >> 8
