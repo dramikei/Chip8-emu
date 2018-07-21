@@ -14,6 +14,7 @@ class ChipVC: UIViewController {
     @IBOutlet weak var skView: SKView!
     var scene: SKScene!
     var emuTimer: Timer!
+    var keys: [Byte]!
     
     
     var chip8: Chip8!
@@ -22,6 +23,7 @@ class ChipVC: UIViewController {
         super.viewDidLoad()
         scene = SKScene()
         chip8 = Chip8()
+        keys = chip8.loadKeys()
         getGame()
         createSceneContent()
         presentDisplay()
@@ -74,6 +76,26 @@ class ChipVC: UIViewController {
         catch {
             print("Error while loading the rom")
         }
+    }
+    
+    @IBAction func btnLongPressed(_ sender: UILongPressGestureRecognizer) {
+        
+        if sender.state == .began {
+            btnPressed(tag: (sender.view?.tag)!)
+        } else if sender.state == .ended {
+            btnUnPressed(tag: (sender.view?.tag)!)
+        }
+        
+    }
+    
+    func btnPressed(tag: Int) {
+        keys[tag] = 1
+        chip8.setKeys(keysArr: keys)
+    }
+    
+    func btnUnPressed(tag: Int) {
+        keys[tag] = 0
+        chip8.setKeys(keysArr: keys)
     }
 
 }

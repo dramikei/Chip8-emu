@@ -163,6 +163,35 @@ class Chip8 {
             break
             
         /////////////
+        case 0xE000:
+            switch(opcode & 0x00FF) {
+                
+            case 0x009E:
+                let key: Int = Int(opcode & 0x0F00) >> 8
+                if keys[key] == 1 {
+                    pc += 4
+                } else {
+                    pc += 2
+                }
+                break
+                
+            case 0x00A1:
+                let key: Int = Int(opcode & 0x0F00) >> 8
+                if keys[key] == 0 {
+                    pc += 4
+                } else {
+                    pc += 2
+                }
+                break
+                
+            default:
+                print("Unsupported opcode!")
+                break
+            }
+            break
+        /////////////
+            
+        /////////////
         case 0xF000:
             switch(opcode & 0x00FF) {
                 
@@ -255,6 +284,14 @@ class Chip8 {
     
     func loadFontset() {
         memory.replaceSubrange(0..<Chip8.FontSet.count, with: Chip8.FontSet)
+    }
+    
+    func loadKeys() -> [Byte] {
+        return keys
+    }
+    
+    func setKeys(keysArr: [Byte]) {
+        keys = keysArr
     }
     
     private static let FontSet: [Byte] = [

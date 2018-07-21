@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,18 +14,18 @@
             <objects>
                 <viewController id="8Xi-Ri-nQX" customClass="MainVC" customModule="Chip8_emu" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9kz-a6-bRT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kZu-vC-kwK">
-                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
+                                <rect key="frame" x="0.0" y="60" width="667" height="315"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="55" id="JWS-qb-6c7">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="55"/>
+                                        <rect key="frame" x="0.0" y="28" width="667" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JWS-qb-6c7" id="ygG-pO-tSV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="667" height="54.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pong.rom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlN-iy-3Yf">
@@ -45,10 +45,10 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KT8-m7-nVn">
-                                <rect key="frame" x="0.0" y="20" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chip8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Yu-2q-ZNh">
-                                        <rect key="frame" x="152" y="14.5" width="71" height="31.5"/>
+                                        <rect key="frame" x="298" y="14.5" width="71" height="31.5"/>
                                         <fontDescription key="fontDescription" name="Kefa-Regular" family="Kefa" pointSize="27"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -84,19 +84,251 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ChipVC" customModule="Chip8_emu" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <skView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6v-Zx-wcI">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            <skView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L6v-Zx-wcI">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </skView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cdk-Q0-PPP">
+                                <rect key="frame" x="213" y="111" width="241" height="244"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="ift-Ea-Tlz">
+                                        <rect key="frame" x="0.0" y="0.0" width="241" height="55"/>
+                                        <subviews>
+                                            <button opaque="NO" alpha="0.55000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4j-MQ-jGE" userLabel="1">
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="IeH-lh-hPb"/>
+                                                    <constraint firstAttribute="width" constant="55" id="IfV-fF-gJB"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="1"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="aRE-wq-ESH" appends="YES" id="4ie-Qw-AOt"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.55000000000000004" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQm-2H-lnh" userLabel="2">
+                                                <rect key="frame" x="62" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="1ok-M7-shy"/>
+                                                    <constraint firstAttribute="width" constant="55" id="Otk-7W-Mvl"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="2"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Sqb-E4-4Im" appends="YES" id="NrQ-mL-3rF"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.55000000000000004" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3P-TC-Xkb" userLabel="3">
+                                                <rect key="frame" x="124" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="jK0-li-GRw"/>
+                                                    <constraint firstAttribute="width" constant="55" id="yZZ-qO-QcV"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="3"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="8rr-kk-ZO6" appends="YES" id="bHN-UU-HtP"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.55000000000000004" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIL-Ra-YqB" userLabel="C">
+                                                <rect key="frame" x="186" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="0Jd-80-dsd"/>
+                                                    <constraint firstAttribute="width" constant="55" id="onA-N7-dEJ"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="C"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="3Da-3l-ZGP" appends="YES" id="a0g-6f-7al"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="WVP-Tb-Jhw">
+                                        <rect key="frame" x="0.0" y="63" width="241" height="55"/>
+                                        <subviews>
+                                            <button opaque="NO" alpha="0.55000000000000004" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zay-Ft-Bdc" userLabel="4">
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="I4Y-m8-NHh"/>
+                                                    <constraint firstAttribute="width" constant="55" id="OUp-QA-gLY"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="4"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Hnr-ii-bGv" appends="YES" id="4gy-ez-f6B"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.55000000000000004" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lFt-Uu-5Ae" userLabel="5">
+                                                <rect key="frame" x="62" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="7QN-6F-u8x"/>
+                                                    <constraint firstAttribute="width" constant="55" id="JYq-jE-gvC"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="5"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="J0C-tU-2OG" appends="YES" id="eho-uw-ntW"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.55000000000000004" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zxu-9c-s8a" userLabel="6">
+                                                <rect key="frame" x="124" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="F6z-E2-7dk"/>
+                                                    <constraint firstAttribute="width" constant="55" id="GuB-yF-zqN"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="6"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="SMU-rD-Ldr" appends="YES" id="OVL-2x-KFZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.55000000000000004" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STh-lm-KZR" userLabel="D">
+                                                <rect key="frame" x="186" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="Mud-h2-mYe"/>
+                                                    <constraint firstAttribute="width" constant="55" id="Z6A-rX-cXa"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="D"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="FSP-5P-gU6" appends="YES" id="2wM-aV-eOj"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="7AJ-FF-Rip">
+                                        <rect key="frame" x="0.0" y="126" width="241" height="55"/>
+                                        <subviews>
+                                            <button opaque="NO" alpha="0.55000000000000004" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHE-lU-Hyt" userLabel="7">
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="55" id="Ibk-S9-pvA"/>
+                                                    <constraint firstAttribute="height" constant="55" id="u9F-22-Xvv"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="7"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="IPt-0u-RaM" appends="YES" id="Lfm-OF-ETq"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.55000000000000004" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOc-Lr-3GL" userLabel="8">
+                                                <rect key="frame" x="62" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="EKW-ef-sxE"/>
+                                                    <constraint firstAttribute="width" constant="55" id="XWm-KJ-C33"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="8"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="R8H-Pj-ghX" appends="YES" id="BGn-co-nK9"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.55000000000000004" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPy-Is-UQ0" userLabel="9">
+                                                <rect key="frame" x="124" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="61J-FV-q9Q"/>
+                                                    <constraint firstAttribute="width" constant="55" id="xmm-Gv-Ntv"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="9"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="736-SR-yFg" appends="YES" id="qzP-dC-1LF"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.55000000000000004" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ya3-Np-kek" userLabel="E">
+                                                <rect key="frame" x="186" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="jsB-GL-VUg"/>
+                                                    <constraint firstAttribute="width" constant="55" id="xY1-NX-bUb"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="E"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="0YR-kj-IFJ" appends="YES" id="XZX-CR-QkY"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="LCZ-ny-usM">
+                                        <rect key="frame" x="0.0" y="189" width="241" height="55"/>
+                                        <subviews>
+                                            <button opaque="NO" alpha="0.55000000000000004" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6f-iN-kBz" userLabel="A">
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="D80-Bp-IW3"/>
+                                                    <constraint firstAttribute="width" constant="55" id="XjS-eP-mJi"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="A"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="JLE-sz-tPz" appends="YES" id="TPX-ES-9g7"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.55000000000000004" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k39-Fl-6AS" userLabel="0">
+                                                <rect key="frame" x="62" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="vq8-G0-Oc3"/>
+                                                    <constraint firstAttribute="width" constant="55" id="wnJ-Sv-zIw"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="0"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Gty-OI-vN1" appends="YES" id="6Ep-Hh-Qmn"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.55000000000000004" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGZ-0K-fsK" userLabel="B">
+                                                <rect key="frame" x="124" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="VSL-uv-eJL"/>
+                                                    <constraint firstAttribute="width" constant="55" id="f2G-JV-e66"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="B"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="vGI-CJ-PJ7" appends="YES" id="FLS-Pv-FRC"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.55000000000000004" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PW3-tc-QA7" userLabel="F">
+                                                <rect key="frame" x="186" y="0.0" width="55" height="55"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="FTY-mu-Orv"/>
+                                                    <constraint firstAttribute="width" constant="55" id="bZ5-bD-ifX"/>
+                                                </constraints>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="F"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="48M-Z1-njq" appends="YES" id="ZRG-FS-jrb"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="L6v-Zx-wcI" secondAttribute="bottom" id="6Ve-Sg-4gf"/>
-                            <constraint firstItem="L6v-Zx-wcI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9G7-D0-3RN"/>
-                            <constraint firstItem="L6v-Zx-wcI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="SxN-t1-UW3"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="L6v-Zx-wcI" secondAttribute="trailing" id="vGg-cg-3ua"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Cdk-Q0-PPP" secondAttribute="bottom" constant="20" id="Nyv-w5-F44"/>
+                            <constraint firstItem="Cdk-Q0-PPP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="w4N-tZ-Frt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -105,8 +337,106 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="aRE-wq-ESH">
+                    <connections>
+                        <action selector="btnLongPressed:" destination="BYZ-38-t0r" id="4CC-pd-mbK"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="Sqb-E4-4Im">
+                    <connections>
+                        <action selector="btnLongPressed:" destination="BYZ-38-t0r" id="F4y-Mv-idM"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="8rr-kk-ZO6">
+                    <connections>
+                        <action selector="btnLongPressed:" destination="BYZ-38-t0r" id="I8E-JS-i20"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="3Da-3l-ZGP">
+                    <connections>
+                        <action selector="btnLongPressed:" destination="BYZ-38-t0r" id="Y6e-NZ-spe"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="Hnr-ii-bGv">
+                    <connections>
+                        <action selector="btnLongPressed:" destination="BYZ-38-t0r" id="jI0-R7-yWc"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="J0C-tU-2OG">
+                    <connections>
+                        <action selector="btnLongPressed:" destination="BYZ-38-t0r" id="Cc9-0W-tCs"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="SMU-rD-Ldr">
+                    <connections>
+                        <action selector="btnLongPressed:" destination="BYZ-38-t0r" id="zh7-vD-nvq"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="FSP-5P-gU6">
+                    <connections>
+                        <action selector="btnLongPressed:" destination="BYZ-38-t0r" id="Vpa-We-6c5"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="IPt-0u-RaM">
+                    <connections>
+                        <action selector="btnLongPressed:" destination="BYZ-38-t0r" id="KOx-HV-BR9"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="R8H-Pj-ghX">
+                    <connections>
+                        <action selector="btnLongPressed:" destination="BYZ-38-t0r" id="9nx-b0-eZx"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="736-SR-yFg">
+                    <connections>
+                        <action selector="btnLongPressed:" destination="BYZ-38-t0r" id="c5l-yQ-03u"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="0YR-kj-IFJ">
+                    <connections>
+                        <action selector="btnLongPressed:" destination="BYZ-38-t0r" id="t7h-Nm-Vvl"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="JLE-sz-tPz">
+                    <connections>
+                        <action selector="btnLongPressed:" destination="BYZ-38-t0r" id="mfR-fT-Mjb"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="Gty-OI-vN1">
+                    <connections>
+                        <action selector="btnLongPressed:" destination="BYZ-38-t0r" id="4Kv-nN-cMX"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="vGI-CJ-PJ7">
+                    <connections>
+                        <action selector="btnLongPressed:" destination="BYZ-38-t0r" id="wrN-cg-ZBT"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="48M-Z1-njq">
+                    <connections>
+                        <action selector="btnLongPressed:" destination="BYZ-38-t0r" id="ACO-TB-HLV"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="805.60000000000002" y="139.880059970015"/>
+            <point key="canvasLocation" x="805.54722638680664" y="138.40000000000001"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="0" width="90" height="90"/>
+        <image name="1" width="90" height="90"/>
+        <image name="2" width="90" height="90"/>
+        <image name="3" width="90" height="90"/>
+        <image name="4" width="90" height="90"/>
+        <image name="5" width="90" height="90"/>
+        <image name="6" width="90" height="90"/>
+        <image name="7" width="90" height="90"/>
+        <image name="8" width="90" height="90"/>
+        <image name="9" width="90" height="90"/>
+        <image name="A" width="90" height="90"/>
+        <image name="B" width="90" height="90"/>
+        <image name="C" width="90" height="90"/>
+        <image name="D" width="90" height="90"/>
+        <image name="E" width="90" height="90"/>
+        <image name="F" width="90" height="90"/>
+    </resources>
 </document>
