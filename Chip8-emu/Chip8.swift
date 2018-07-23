@@ -92,6 +92,19 @@ class Chip8 {
             }
             break
             
+        case 0x4000:
+            let x = Int(opcode & 0x0F00) >> 8
+            let nn = Int(opcode & 0x00FF)
+            
+            if V[x] != nn {
+                print("Skipping as V[\(x)] != \(nn)")
+                pc += 4
+            } else {
+                print("Not skipping as V[\(x)] == \(nn)")
+                pc += 2
+            }
+            break
+            
         case 0x6000:
             let x: Int = Int(opcode & 0x0F00) >> 8
             V[x] = Byte(opcode & 0x00FF)
@@ -102,7 +115,7 @@ class Chip8 {
         case 0x7000:
             let x: Int = Int(opcode & 0x0F00) >> 8
             let nn: Byte = Byte(opcode & 0x00FF)
-            V[x] = (V[x] + nn) & 0xFF
+            V[x] = Byte((Int(V[x]) + Int(nn)) & 0xFF)
             pc += 2
             print("Adding \(nn) to V[\(x)] = \(V[x])")
             break
@@ -116,6 +129,26 @@ class Chip8 {
                 let y = Int(opcode & 0x00F0) >> 4
                 print("Setting V[\(x)] to \(V[y])")
                 V[x] = V[y]
+                pc += 2
+                break
+            case 0x0002:
+                let x = Int(opcode & 0x0F00) >> 8
+                let y = Int(opcode & 0x00F0) >> 4
+                V[x] = V[x] & V[y]
+                pc += 2
+                print("Set V[\(x)] to V[\(x)] & V[\(y)] = \(V[x] & V[y])")
+                break
+            case 0x0004:
+                let x = Int(opcode & 0x0F00) >> 8
+                let y = Int(opcode & 0x00F0) >> 4
+                let sum = Int(V[x]) + Int(V[y])
+                print("Adding V[\(x)] to V[\(y)] = \(sum & 0xFF), applying carry if needed.")
+                if V[y] > (255 - V[x]) {
+                    V[0xF] = 1
+                } else {
+                    V[0xF] = 0
+                }
+                V[x] = Byte(sum & 0xFF)
                 pc += 2
                 break
             default:
@@ -145,19 +178,27 @@ class Chip8 {
             let y = V[Int(opcode & 0x00F0) >> 4]
             let height = opcode & 0x000F
             var pixel: Word
-            
             V[0xF] = 0;
-            for yline in 0...(height - 1) {
-                pixel = Word(memory[Int(I + yline)])
-                for xline in 0...7 {
-                    if((pixel & (0x80 >> xline)) != 0) {
-                        if(display[Int(x) + Int(xline) + ((Int(y) + Int(yline)) * 64)] == 1){
-                            V[Int(0xF)] = 1
+            
+            for _y in 0...(height-1) {
+                let line = memory[Int(I + _y)]
+                for _x in 0...7 {
+                    pixel = Word(Int(line) & (Int(0x80) >> _x))
+                    if pixel != 0 {
+                        var totalX = Int(x) + Int(_x)
+                        var totalY = Int(y) + Int(_y)
+                        totalX = totalX % 64
+                        totalY = totalY % 32
+                        
+                        let index = (totalY * 64) + totalX
+                        if display[index] == 1 {
+                            V[0xF] = 1
                         }
-                        display[Int(x) + Int(xline) + ((Int(y) + Int(yline)) * 64)] ^= 1
+                        display[index] ^= 1
                     }
                 }
             }
+            
             needRedraw = true
             pc += 2
             break
@@ -167,7 +208,8 @@ class Chip8 {
             switch(opcode & 0x00FF) {
                 
             case 0x009E:
-                let key: Int = Int(opcode & 0x0F00) >> 8
+                let x: Int = Int(opcode & 0x0F00) >> 8
+                let key = Int(V[x])
                 if keys[key] == 1 {
                     pc += 4
                 } else {
@@ -176,7 +218,8 @@ class Chip8 {
                 break
                 
             case 0x00A1:
-                let key: Int = Int(opcode & 0x0F00) >> 8
+                let x: Int = Int(opcode & 0x0F00) >> 8
+                let key = Int(V[x])
                 if keys[key] == 0 {
                     pc += 4
                 } else {
@@ -239,6 +282,7 @@ class Chip8 {
                     print(i)
                 }
                 print("Setting V[0] to V[\(x)] to the values of memory[\(printHex(Int(I & 0xFFFF)))]")
+                I = Word(Int(I) + (x + 1))
                 pc += 2
                 break
             default:
