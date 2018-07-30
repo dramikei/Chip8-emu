@@ -15,7 +15,7 @@ class ChipVC: UIViewController {
     var scene: SKScene!
     var emuTimer: Timer!
     var keys: [Byte]!
-    
+    var rom: String!
     
     var chip8: Chip8!
 
@@ -65,8 +65,9 @@ class ChipVC: UIViewController {
     }
     
     func getGame() {
+        print("Rom: \(String(describing: rom))")
         do {
-            let data = try Data(contentsOf: Bundle.main.url(forResource: "pong2", withExtension: "c8")!)
+            let data = try Data(contentsOf: Bundle.main.url(forResource: rom, withExtension: "c8")!)
             data.withUnsafeBytes({ (pointer: UnsafePointer<Byte>) in
                 let buffer = UnsafeBufferPointer(start: pointer, count: data.count)
                 let array = Array<Byte>(buffer)
