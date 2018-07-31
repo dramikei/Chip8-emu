@@ -151,6 +151,20 @@ class Chip8 {
                 V[x] = Byte(sum & 0xFF)
                 pc += 2
                 break
+            case 0x0005:
+                let x = Int(opcode & 0x0F00) >> 8
+                let y = Int(opcode & 0x00F0) >> 4
+                print("V[\(x)] = \(V[x]) + V[\(y)] == \(V[x] + V[y])")
+                if V[x] > V[y] {
+                    V[0xF] = 1
+                    print("No borrow")
+                } else {
+                    V[0xF] = 0
+                    print("borrow")
+                }
+                V[x] = Byte((Int(V[x]) - Int(V[y])) & 0xFF)
+                pc += 2
+                break
             default:
                 print("Unsupported opcode! in case 8000")
                 break
@@ -252,6 +266,12 @@ class Chip8 {
                 print("Setting delayTimer to V[\(x)] = \(V[x])")
                 break
                 
+            case 0x0018:
+                let x = Int(opcode & 0x0F00) >> 8
+                sound_timer = V[x]
+                pc += 2
+                break
+                
             case 0x0029:
                 let x = Int((opcode & 0x0F00)) >> 8
                 let character: Byte = V[x]
@@ -277,7 +297,7 @@ class Chip8 {
                 
             case 0x0065:
                 let x = Int(opcode & 0xF00) >> 8
-                for i in 0...(x - 1) {
+                for i in 0...(x) {
                     V[i] = memory[Int(I) + i]
                     print(i)
                 }
