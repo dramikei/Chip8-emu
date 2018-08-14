@@ -54,7 +54,9 @@ class Chip8 {
         case 0x000:
             switch (opcode & 0x00FF) {
             case 0x00E0:
-                print("Unsupported opcode!")
+                display.replaceSubrange(0 ..< display.count, with: [Byte](repeating: 0, count: 64*32))
+                pc += 2
+                needRedraw = true
                 break
             case 0x00EE:
                 stackPointer = stackPointer - 1
@@ -165,6 +167,14 @@ class Chip8 {
                 V[x] = Byte((Int(V[x]) - Int(V[y])) & 0xFF)
                 pc += 2
                 break
+                
+            case 0x0006:
+                let x = Int(opcode & 0x0F00) >> 8
+                V[0xF] = V[x] & 0x1
+                V[x] = Byte(Int(V[x]) << 1)
+                pc += 2
+                print("Shift V[\(x)] = \(V[x]) << 1 and VF to LSB of VX")
+                break
             default:
                 print("Unsupported opcode! in case 8000")
                 break
@@ -269,6 +279,13 @@ class Chip8 {
             case 0x0018:
                 let x = Int(opcode & 0x0F00) >> 8
                 sound_timer = V[x]
+                pc += 2
+                break
+                
+            case 0x001E:
+                let x = Int(opcode & 0x0F00) >> 8
+                I = Word(Int(I) + Int(V[x]))
+                print("Adding V[\(x)] = \(V[x]) to I")
                 pc += 2
                 break
                 
