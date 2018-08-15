@@ -107,6 +107,18 @@ class Chip8 {
             }
             break
             
+        case 0x5000:
+            let x = Int(opcode & 0x0F00) >> 8
+            let y = Int(opcode & 0x00F0) >> 4
+            if V[x] == V[y] {
+                print("Skipping as V[\(x)] == V[\(y)] == \(V[x])")
+                pc += 4
+            } else {
+                print("Not Skipping as V[\(x)] != V[\(y)]")
+                pc += 2
+            }
+            break
+            
         case 0x6000:
             let x: Int = Int(opcode & 0x0F00) >> 8
             V[x] = Byte(opcode & 0x00FF)
@@ -133,12 +145,26 @@ class Chip8 {
                 V[x] = V[y]
                 pc += 2
                 break
+            case 0x0001:
+                let x = Int(opcode & 0x0F00) >> 8
+                let y = Int(opcode & 0x00F0) >> 4
+                print("Setting V[\(x)] to \(Int(V[x]) | Int(V[y]))")
+                V[x] = Byte((Int(V[x]) | Int(V[x]))) & 0xFF
+                pc += 2
+                break
             case 0x0002:
                 let x = Int(opcode & 0x0F00) >> 8
                 let y = Int(opcode & 0x00F0) >> 4
                 V[x] = V[x] & V[y]
                 pc += 2
                 print("Set V[\(x)] to V[\(x)] & V[\(y)] = \(V[x] & V[y])")
+                break
+            case 0x0003:
+                let x = Int(opcode & 0x0F00) >> 8
+                let y = Int(opcode & 0x00F0) >> 4
+                print("Setting V[\(x)] to \(Int(V[x]) ^ Int(V[y]))")
+                V[x] = Byte((Int(V[x]) ^ Int(V[x]))) & 0xFF
+                pc += 2
                 break
             case 0x0004:
                 let x = Int(opcode & 0x0F00) >> 8
@@ -171,9 +197,29 @@ class Chip8 {
             case 0x0006:
                 let x = Int(opcode & 0x0F00) >> 8
                 V[0xF] = V[x] & 0x1
+                V[x] = Byte(Int(V[x]) >> 1)
+                pc += 2
+                print("Shift V[\(x)] = \(V[x]) >> 1 and VF to LSB of VX")
+                break
+            case 0x0007:
+                let x = Int(opcode & 0x0F00) >> 8
+                let y = Int(opcode & 0x00F0) >> 4
+                
+                if V[x] > V[y] {
+                    V[0xF] = 0
+                } else {
+                    V[0xF] = 1
+                }
+                V[x] = (V[y] - V[x]) & 0xFF
+                print("V[\(x)] = V[\(y)] - V[\(x)], applies borrow if needed.")
+                pc += 2
+                break
+            case 0x000E:
+                let x = Int(opcode & 0x0F00) >> 8
+                V[0xF] = V[x] & 0x80
                 V[x] = Byte(Int(V[x]) << 1)
                 pc += 2
-                print("Shift V[\(x)] = \(V[x]) << 1 and VF to LSB of VX")
+                print("Shift V[\(x)] = \(V[x]) << 1 and VF to MSB of VX")
                 break
             default:
                 print("Unsupported opcode! in case 8000")
@@ -181,10 +227,26 @@ class Chip8 {
             }
             break
         /////////////
-            
+        case 0x9000:
+            let x = Int(opcode & 0x0F00) >> 8
+            let y = Int(opcode & 0x00F0) >> 4
+            if V[x] != V[y] {
+                print("Skipping as V[\(x)] != V[\(y)]")
+                pc += 4
+            } else {
+                print("Not Skipping as V[\(x)] == V[\(y)]")
+                pc += 2
+            }
+            break
         case 0xA000:
             I = opcode & 0x0FFF
             pc += 2
+            break
+            
+        case 0xB000:
+            let nnn = (opcode & 0x0FFF)
+            let extra = V[0] & 0xFF
+            pc = Word(Int(nnn) + Int(extra))
             break
             
         case 0xC000:
@@ -269,6 +331,18 @@ class Chip8 {
                 print("Setting V[\(x)] to delayTimer = \(delay_timer)")
                 break
                 
+            case 0x000A:
+                let x = Int(opcode & 0x0F00) >> 8
+                for i in 0 ..< keys.count {
+                    if keys[i] == 1 {
+                        V[x] = Byte(i)
+                        pc += 2
+                        break
+                    }
+                }
+                print("Awaiting key press to be stored in V[\(x)]")
+                break
+                
             case 0x0015:
                 let x = Int(opcode & 0x0F00) >> 8
                 delay_timer = V[x]
@@ -312,11 +386,19 @@ class Chip8 {
                 pc += 2
                 break
                 
+            case 0x0055:
+                let x = Int(opcode & 0xF00) >> 8
+                for i in 0...(x) {
+                    memory[Int(I) + i] = V[i]
+                }
+                print("Setting memory[\(printHex(Int(I & 0xFFFF))) + n] = V[0] to V[x]")
+                pc += 2
+                break
+                
             case 0x0065:
                 let x = Int(opcode & 0xF00) >> 8
                 for i in 0...(x) {
                     V[i] = memory[Int(I) + i]
-                    print(i)
                 }
                 print("Setting V[0] to V[\(x)] to the values of memory[\(printHex(Int(I & 0xFFFF)))]")
                 I = Word(Int(I) + (x + 1))
