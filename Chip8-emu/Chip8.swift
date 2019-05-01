@@ -429,7 +429,7 @@ class Chip8 {
         var i = 0
         while i < rom.count {
             memory[0x200 + i] = rom[i]
-            i += 1
+            i += 1;
         }
     }
     
